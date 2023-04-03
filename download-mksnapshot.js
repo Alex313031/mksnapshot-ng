@@ -22,6 +22,8 @@ function download (version) {
     artifactName: 'mksnapshot',
     force: process.env.force_no_cache === 'true',
     disableChecksumSafetyCheck: true,
+    unsafelyDisableChecksums: true,
+    mirrorOptions: { mirror: 'https://github.com/Alex313031/electron-12.2.3/releases/download/' },
     platform: process.env.npm_config_platform,
     cacheRoot: process.env.electron_config_cache,
     arch: archToDownload,
