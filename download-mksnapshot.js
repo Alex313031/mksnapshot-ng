@@ -23,6 +23,7 @@ function download (version) {
     force: process.env.force_no_cache === 'true',
     disableChecksumSafetyCheck: true,
     platform: process.env.npm_config_platform,
+    cacheRoot: process.env.electron_config_cache,
     arch: archToDownload,
     rejectUnauthorized: process.env.npm_config_strict_ssl === 'true',
     quiet: false
