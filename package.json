@@ -3,7 +3,11 @@
   "version": "12.2.3",
   "author": "Alex313031 <https://github.com/Alex313031>",
   "description": "Electron version of the mksnapshot binary",
-  "repository": "https://github.com/Alex313031/mksnapshot-ng",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex313031/mksnapshot-ng.git"
+  },
+  "homepage": "https://github.com/Alex313031/mksnapshot-ng",
   "bin": {
     "mksnapshot": "./mksnapshot.js"
   },
