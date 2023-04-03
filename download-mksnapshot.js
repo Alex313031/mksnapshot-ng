@@ -20,10 +20,12 @@ function download (version) {
   return downloadArtifact({
     version: version,
     artifactName: 'mksnapshot',
+    force: process.env.force_no_cache === 'true',
+    disableChecksumSafetyCheck: true,
     platform: process.env.npm_config_platform,
     arch: archToDownload,
     rejectUnauthorized: process.env.npm_config_strict_ssl === 'true',
-    quiet: ['info', 'verbose', 'silly', 'http'].indexOf(process.env.npm_config_loglevel) === -1
+    quiet: false
   })
 }
 
