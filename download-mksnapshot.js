@@ -5,6 +5,14 @@ const extractZip = require('extract-zip')
 const versionToDownload = require('./package').version
 let archToDownload = process.env.npm_config_arch
 
+let electronSource;
+// Use my optimized Electron builds unless SSE4 is set
+if (process.env.ELECTRON_SSE4 === '1') {
+  electronSource = 'https://github.com/electron/electron/releases/download/';
+} else {
+  electronSource = 'https://github.com/Alex313031/electron-12.2.3/releases/download/';
+}
+
 if (process.arch.indexOf('arm') === 0 && process.platform !== 'darwin') {
   console.log(`WARNING: mksnapshot does not run on ${process.arch}. Download 
   https://github.com/electron/electron/releases/download/v${versionToDownload}/mksnapshot-v${versionToDownload}-${process.platform}-${process.arch}-x64.zip
@@ -23,7 +31,7 @@ function download (version) {
     force: process.env.force_no_cache === 'true',
     disableChecksumSafetyCheck: true,
     unsafelyDisableChecksums: true,
-    mirrorOptions: { mirror: 'https://github.com/Alex313031/electron-12.2.3/releases/download/' },
+    mirrorOptions: { mirror: electronSource },
     platform: process.env.npm_config_platform,
     cacheRoot: process.env.electron_config_cache,
     arch: archToDownload,
